@@ -8,8 +8,8 @@ fetch("https://pokeapi.co/api/v2/pokemon/")
     .then(data => {
 
         let filteredPokemons = data.results.filter((pokemon, i) => {
-            
-            if ((i + 1) % 3 !== 1)  {
+
+            if ((i + 1) % 3 !== 1) {
                 removedPokemon.push(pokemon)
                 return false
             }
@@ -33,7 +33,9 @@ fetch("https://pokeapi.co/api/v2/pokemon/")
                         <div class="poke__image">
                             <img src="${sprite}" alt="">
                         </div>
+                        <div class="poke__name-container">
                         <h2 class="poke__name">${name}</h2>
+                        </div>
                         
                     `
 
