@@ -1,0 +1,77 @@
+let sectionElm = document.createElement("section");
+sectionElm.classList.add("poke__list")
+
+let removedPokemon = []
+
+fetch("https://pokeapi.co/api/v2/pokemon/")
+    .then(response => response.json())
+    .then(data => {
+
+        let filteredPokemons = data.results.filter((pokemon, i) => {
+            
+            if ((i + 1) % 3 !== 1)  {
+                removedPokemon.push(pokemon)
+                return false
+            }
+
+            return true
+
+        })
+
+
+        let cards = filteredPokemons.map(pokemon => {
+
+            let pokeId = pokemon.url.slice(0, -1).split("/").pop()
+            let name = pokemon.name
+            let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`
+
+            let cardElm = document.createElement("div")
+            cardElm.classList.add("poke__card")
+
+            cardElm.innerHTML = `
+                    <p class="poke__id">#${pokeId}</p>
+                        <div class="poke__image">
+                            <img src="${sprite}" alt="">
+                        </div>
+                        <h2 class="poke__name">${name}</h2>
+                        
+                    `
+
+            // fetch(`${pokemon.url}`)
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         // console.log(data);
+
+            //         let name = data.name
+            //         let pokeId = data.id
+
+            //         let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`
+            //         // console.log(sprite);
+
+            //         // console.log(pokeId);
+
+
+            //         let cardElm = document.createElement("div")
+            //         cardElm.classList.add("poke__card")
+
+            //         cardElm.innerHTML = `
+            //         <p class="poke__id">#${pokeId}</p>
+            //             <div class="poke__image">
+            //                 <img src="${sprite}" alt="">
+            //             </div>
+            //             <h2 class="poke__name">${name}</h2>
+
+            //         `
+
+
+            //         sectionElm.append(cardElm)
+
+            //     })
+
+            return cardElm
+        })
+
+        sectionElm.append(...cards)
+    })
+
+document.querySelector("main").append(sectionElm)
