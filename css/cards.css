@@ -1,11 +1,13 @@
 .poke__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: max-content;
+    gap: 0.5rem;
+    overflow-y: scroll;
     padding: 1.5rem 0.75rem;
     background: var(--white-grayscale);
     box-shadow: var(--innershadow2);
     border-radius: 8px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
 }
 
 .poke__card {
@@ -15,6 +17,8 @@
     border-radius: 8px;
     display: grid;
     position: relative;
+    text-decoration: none;
+    color: var(--dark-grayscale);
 }
 
 .poke__card h2 {

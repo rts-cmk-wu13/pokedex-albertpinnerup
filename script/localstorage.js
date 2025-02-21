@@ -4,7 +4,7 @@
  * @param {string} key 
  * @param {string | number | boolean | object | any[]} - value to be saved
  */
-function saveTolocalStorage(key, value) {
+function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
@@ -18,6 +18,11 @@ function readFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
 
+// window.saveToLocalStorage = function (key, value) {
+//     localStorage.setItem(key, value);
+// }
+
+
 
 /**
  * 
@@ -30,6 +35,11 @@ function removeFromLocalStorage(key) {
 
 let favorites = readFromLocalStorage("favorites") || []
 
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
+console.log("localstorage.js loaded");
 
 
 

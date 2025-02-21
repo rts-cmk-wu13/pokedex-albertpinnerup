@@ -1,0 +1,49 @@
+.details nav {
+    display: flex;
+    padding: 1.25rem 1.25rem 1.5rem;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.details header {
+    position: relative;
+    height: 220px;
+}
+
+
+
+.poke__details {
+    display: grid;
+    overflow-y: scroll;
+    padding: 1.5rem 0.75rem;
+    background: var(--white-grayscale);
+    box-shadow: var(--innershadow2);
+    border-radius: 8px;
+    height: 100%;
+}
+
+.poke__name-details {
+    color: var(--white-grayscale);
+}
+
+.poke__gotofront {
+    display: inline-block;
+    height: max-content;
+    display: flex;
+    align-items: center;
+}
+
+.poke__id-details {
+    color: var(--white-grayscale);
+    padding: 0;
+    font-size: var(--subtitle2-header);
+    font-weight: var(--fw-bold);
+    margin-left: auto;
+}
+
+.poke__ball {
+    position: absolute;
+    opacity: .10;
+    top: 0;
+    right: 0;
+}
