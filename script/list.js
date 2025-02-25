@@ -1,46 +1,54 @@
+
+
+
 let sectionElm = document.createElement("section");
 sectionElm.classList.add("poke__list")
 
-
-
-
 let removedPokemon = []
 
-fetch("https://pokeapi.co/api/v2/pokemon?limit=150/")
-    .then(response => response.json())
-    .then(data => {
+let options = {
+    threshold: 1.0,
+}
 
-        
-        
-
-        let filteredPokemons = data.results.filter((pokemon, i) => {
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
             
+            currentOffSet = currentOffSet + 50
 
-            if ((i + 1) % 3 !== 1) {
-                removedPokemon.push(pokemon)
-                return false
+            if(currentOffSet < 1304) {
+                fetchPokemon(currentOffSet)
+            } else {
+                console.log("no more pokemon");
             }
-
-            return true
-
-        })
-
-    
-        let cards = filteredPokemons.map(pokemon => {
-
-            let pokeId = pokemon.url.slice(0, -1).split("/").pop()
-            let name = pokemon.name
-            let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`
-
-            let cardElm = document.createElement("a")
-            cardElm.classList.add("poke__card")
-            cardElm.href = `details.html?pokemonid=${pokeId}`
-            cardElm.dataset.pokeId = `${pokeId}`
             
+        }
+    })
+}, options)
 
-            cardElm.innerHTML = `
+let currentOffSet = 0
+
+function fetchPokemon(offSet) {
+
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=50`)
+        .then(response => response.json())
+        .then(data => {
+
+            let cards = data.results.map(pokemon => {
+
+                let pokeId = pokemon.url.slice(0, -1).split("/").pop()
+                let name = pokemon.name
+                let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`
+
+                let cardElm = document.createElement("a")
+                cardElm.classList.add("poke__card")
+                cardElm.href = `details.html?pokemonid=${pokeId}`
+                cardElm.dataset.pokeId = `${pokeId}`
+
+
+                cardElm.innerHTML = `
                     
-                        <p class="poke__id">#${pokeId}</p>
+                        <p class="poke__id">#${pokeId.toString().padStart(3, '0')}</p>
                         <div class="poke__image">
                             <img src="${sprite}" alt="">
                         </div>
@@ -48,56 +56,41 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=150/")
                             <h2 class="poke__name">${capitalizeFirstLetter(name)}</h2>
                         </div>
 
-                `
+                `;
 
-            // fetch(`${pokemon.url}`)
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         // console.log(data);
+                return cardElm
+            });
 
-            //         let name = data.name
-            //         let pokeId = data.id
+            sectionElm.append(...cards)
 
-            //         let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`
-            //         // console.log(sprite);
+            let observedPokemon = sectionElm.querySelector("a:nth-last-child(5)")
+            if (observedPokemon) {
+                observer.observe(observedPokemon);
+            }
+            
+        });
 
-            //         // console.log(pokeId);
+    document.querySelector("main").append(sectionElm)
+
+    sectionElm.addEventListener("click", function (e) {
+        let card = e.target.closest(".poke__card"); // Ensure we get the right element
+        if (!card) return; // Ignore clicks outside cards
+
+        let currentId = card.dataset.pokeId;
+
+        console.log("Saving to localStorage:", currentId);
+
+        saveToLocalStorage("pokemon", currentId);
+    });
+}
+
+fetchPokemon()
 
 
-            //         let cardElm = document.createElement("div")
-            //         cardElm.classList.add("poke__card")
-
-            //         cardElm.innerHTML = `
-            //         <p class="poke__id">#${pokeId}</p>
-            //             <div class="poke__image">
-            //                 <img src="${sprite}" alt="">
-            //             </div>
-            //             <h2 class="poke__name">${name}</h2>
-
-            //         `
 
 
-            //         sectionElm.append(cardElm)
 
-            //     })
 
-            return cardElm
-        })
 
-       
 
-        sectionElm.append(...cards)
-    })
 
-document.querySelector("main").append(sectionElm)
-
-sectionElm.addEventListener("click", function(e) {
-    let card = e.target.closest(".poke__card"); // Ensure we get the right element
-    if (!card) return; // Ignore clicks outside cards
-
-    let currentId = card.dataset.pokeId;
-
-    console.log("Saving to localStorage:", currentId);
-    
-    saveToLocalStorage("pokemon", currentId);
-});

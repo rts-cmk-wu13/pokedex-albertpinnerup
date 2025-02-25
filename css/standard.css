@@ -15,11 +15,11 @@
 :root {
 
 	/* ? font variables start*/
-	--fs-2432: clamp(1.5rem, 1.333rem + 0.741vw, 2rem);
-	--fs-1416: clamp(0.875rem, 0.833rem + 0.185vw, 1rem);
-	--fs-1216: clamp(0.75rem, 0.667rem + 0.37vw, 1rem);
-	--fs-1016: clamp(0.625rem, 0.5rem + 0.556vw, 1rem);
-	--fs-0812: clamp(0.5rem, 0.417rem + 0.37vw, 0.75rem);
+	--fs-24: 1.5rem;
+	--fs-14: 0.875rem;
+	--fs-12: 0.75rem;
+	--fs-10: 0.625rem;
+	--fs-08: 0.5rem;
 
 	--fw-bold: bold;
 	--fw-regular: 400;
@@ -60,19 +60,19 @@
 
 
 	/* ? header variables start*/
-	--headline-header: var(--fs-2432);
-	--subtile1-header: var(--fs-1416);
-	--subtitle2-header: var(--fs-1216);
-	--subtitle3-header: var(--fs-1016);
+	--headline-header: var(--fs-24);
+	--subtitle1-header: var(--fs-14);
+	--subtitle2-header: var(--fs-12);
+	--subtitle3-header: var(--fs-10);
 	/* ! header variables end */
 
 
 
 	/* ? body variables start */
-	--body1: var(--fs-1416);
-	--body2: var(--fs-1216);
-	--body3: var(--fs-1016);
-	--caption-body: var(--fs-0812);
+	--body1: var(--fs-14);
+	--body2: var(--fs-12);
+	--body3: var(--fs-10);
+	--caption-body: var(--fs-08);
 	/* ! body varibles end */
 
 
@@ -96,6 +96,7 @@
 
 html {
 	font-family: "inter", Arial, Helvetica, sans-serif;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -123,3 +124,78 @@ img {
 	height: auto;
 	display: block;
 }
+
+.bug{
+	background-color: var(--type-bug)
+}
+
+.dark {
+background-color: var(--type-dark);
+}
+
+.dragon {
+	background-color: var(--type-dragon);
+}
+
+.electric {
+	background-color: var(--type-electric);
+}
+
+.fairy {
+	background-color: var(--type-fairy);
+}
+
+.fighting {
+	background-color: var(--type-fighting);
+}
+
+.fire {
+	background-color: var(--type-fire);
+}
+
+.flying {
+	background-color: var(--type-flying);
+}
+
+.ghost {
+	background-color: var(--type-ghost);
+}
+
+.normal {
+	background-color: var(--type-normal);
+}
+	
+.grass {
+	background-color: var(--type-grass);
+}
+
+.ground {
+	background-color: var(--type-ground);
+}
+
+.ice {
+	background-color: var(--type-ice);
+}
+
+.poison {
+	background-color: var(--type-poison);
+}
+
+.psychic {
+	background-color: var(--type-psychic);
+}
+
+.rock {
+	background-color: var(--type-rock);
+}
+
+.steel {
+	background-color: var(--type-steel);
+}
+
+.water {
+	background-color: var(--type-water);
+}
+
+	
+	

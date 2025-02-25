@@ -33,13 +33,14 @@ function removeFromLocalStorage(key) {
     localStorage.removeItem(key)
 }
 
+
 let favorites = readFromLocalStorage("favorites") || []
 
 function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
-console.log("localstorage.js loaded");
+
 
 
 
