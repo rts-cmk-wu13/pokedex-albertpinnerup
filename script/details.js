@@ -4,68 +4,74 @@ sectionElm.classList.add("poke__details")
 let currentPoke = readFromLocalStorage("pokemon")
 document.querySelector("#root").classList.add("details")
 
-if (currentPoke == 1) {
-    let arrowRight = document.createElement("a")
-    arrowRight.href = `details.html?pokemonid=${parseInt(currentPoke) + 1}`;
+function arrows() {
 
-    arrowRight.className = "poke__right"
+    if (currentPoke == 1) {
+        let arrowRight = document.createElement("a")
+        arrowRight.href = `details.html?pokemonid=${parseInt(currentPoke) + 1}`;
     
-    arrowRight.addEventListener("click", () => {
+        arrowRight.className = "poke__right"
         
-        let currentId = parseInt(currentPoke) + 1;
-        saveToLocalStorage("pokemon", currentId)
-    })
-    arrowRight.innerHTML = `
-        <i class="fa-solid fa-chevron-right"></i>
-    `
-
-    document.querySelector("header").append(arrowRight)
-} else if (currentPoke == 1304) {
-    let arrowLeft = document.createElement("a")
-    arrowLeft.href = `details.html?pokemonid=${parseInt(currentPoke) - 1}`
+        arrowRight.addEventListener("click", () => {
+            
+            let currentId = parseInt(currentPoke) + 1;
+            saveToLocalStorage("pokemon", currentId)
+        })
+        arrowRight.innerHTML = `
+            <i class="fa-solid fa-chevron-right"></i>
+        `
     
-    arrowLeft.addEventListener("click", () => {
-
-        let currentId = parseInt(currentPoke) - 1;
-        saveToLocalStorage("pokemon", currentId)
-    })
-    arrowLeft.innerHTML = `
+        document.querySelector("header").append(arrowRight)
+    } else if (currentPoke == 1304) {
+        let arrowLeft = document.createElement("a")
+        arrowLeft.href = `details.html?pokemonid=${parseInt(currentPoke) - 1}`
+        
+        arrowLeft.addEventListener("click", () => {
+    
+            let currentId = parseInt(currentPoke) - 1;
+            saveToLocalStorage("pokemon", currentId)
+        })
+        arrowLeft.innerHTML = `
+            <i class="fa-solid fa-chevron-left"></i>
+        `
+    
+        document.querySelector("header").append(arrowLeft)
+    } else {
+    
+        let arrowRight = document.createElement("a")
+        let arrowLeft = document.createElement("a")
+    
+        arrowRight.className = "poke__right"
+        arrowLeft.className = "poke__left"
+    
+        arrowLeft.href = `details.html?pokemonid=${parseInt(currentPoke) - 1}`
+        arrowRight.href = `details.html?pokemonid=${parseInt(currentPoke) + 1}`
+        
+        arrowRight.addEventListener("click", () => {
+    
+            let currentId = parseInt(currentPoke) + 1;
+            saveToLocalStorage("pokemon", currentId)
+        })
+    
+        arrowLeft.addEventListener("click", () => {
+    
+            let currentId = parseInt(currentPoke) - 1;
+            saveToLocalStorage("pokemon", currentId)
+        })
+    
+        arrowRight.innerHTML = `
+            <i class="fa-solid fa-chevron-right"></i>
+        `
+        arrowLeft.innerHTML = `
         <i class="fa-solid fa-chevron-left"></i>
     `
-
-    document.querySelector("header").append(arrowLeft)
-} else {
-
-    let arrowRight = document.createElement("a")
-    let arrowLeft = document.createElement("a")
-
-    arrowRight.className = "poke__right"
-    arrowLeft.className = "poke__left"
-
-    arrowLeft.href = `details.html?pokemonid=${parseInt(currentPoke) - 1}`
-    arrowRight.href = `details.html?pokemonid=${parseInt(currentPoke) + 1}`
     
-    arrowRight.addEventListener("click", () => {
+        document.querySelector("header").append(arrowLeft, arrowRight)
+    }
 
-        let currentId = parseInt(currentPoke) + 1;
-        saveToLocalStorage("pokemon", currentId)
-    })
-
-    arrowLeft.addEventListener("click", () => {
-
-        let currentId = parseInt(currentPoke) - 1;
-        saveToLocalStorage("pokemon", currentId)
-    })
-
-    arrowRight.innerHTML = `
-        <i class="fa-solid fa-chevron-right"></i>
-    `
-    arrowLeft.innerHTML = `
-    <i class="fa-solid fa-chevron-left"></i>
-`
-
-    document.querySelector("header").append(arrowLeft, arrowRight)
 }
+
+arrows()
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${currentPoke}/`)
     .then(response => response.json())
@@ -225,7 +231,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${currentPoke}/`)
             return `
                 <tr>
                     <th class="stat__head">${displayName}</th>
-                    <td class="stat__value">${stat.base_stat}</td>
+                    <td class="stat__value">${stat.base_stat.toString().padStart(3, '0')}</td>
                     <td class="poke__progress"><progress max="300" value="${stat.base_stat}"></td>
                 </tr>
             `
