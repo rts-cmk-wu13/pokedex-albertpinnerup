@@ -26,6 +26,17 @@ const observer = new IntersectionObserver(entries => {
     })
 }, options)
 
+const imageObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.src = entry.target.dataset.imagesrc
+
+            imageObserver.unobserve(entry.target)
+        }
+    })
+})
+
 let currentOffSet = 0
 
 function fetchPokemon(offSet) {
@@ -50,7 +61,7 @@ function fetchPokemon(offSet) {
                     
                         <p class="poke__id">#${pokeId.toString().padStart(3, '0')}</p>
                         <div class="poke__image">
-                            <img src="${sprite}" alt="">
+                            <img src="img/placeholder.png" data-imagesrc="${sprite}" alt="">
                         </div>
                         <div class="poke__name-container">
                             <h2 class="poke__name">${capitalizeFirstLetter(name)}</h2>
@@ -67,6 +78,19 @@ function fetchPokemon(offSet) {
             if (observedPokemon) {
                 observer.observe(observedPokemon);
             }
+
+            let observedImgs = sectionElm.querySelectorAll(".poke__image img")
+            
+            console.log(observedImgs);
+
+            if (observedImgs) {
+                observedImgs.forEach(img => {
+                    imageObserver.observe(img)
+                })
+            }
+
+
+            
             
         });
 

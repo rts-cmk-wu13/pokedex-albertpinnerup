@@ -18,11 +18,6 @@ function readFromLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
 
-// window.saveToLocalStorage = function (key, value) {
-//     localStorage.setItem(key, value);
-// }
-
-
 
 /**
  * 
