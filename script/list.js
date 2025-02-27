@@ -13,15 +13,15 @@ let options = {
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            
+
             currentOffSet = currentOffSet + 50
 
-            if(currentOffSet < 1304) {
+            if (currentOffSet < 1304) {
                 fetchPokemon(currentOffSet)
             } else {
                 console.log("no more pokemon");
             }
-            
+
         }
     })
 }, options)
@@ -39,11 +39,34 @@ const imageObserver = new IntersectionObserver(entries => {
 
 let currentOffSet = 0
 
+let searchContainer = document.createElement("div")
+
+
+
+searchContainer.innerHTML = `
+                <input type="search" id="search" placeholder="Search">
+                <div id="search__results"></div>
+            `
+
+const searchInput = searchContainer.querySelector("#search");
+
+searchInput.addEventListener('input', e => {
+    let value = e.target.value;
+
+    console.log(value);
+
+})
+
+document.querySelector("header").append(searchContainer)
+
 function fetchPokemon(offSet) {
 
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offSet}&limit=50`)
         .then(response => response.json())
         .then(data => {
+
+
+
 
             let cards = data.results.map(pokemon => {
 
@@ -70,6 +93,7 @@ function fetchPokemon(offSet) {
                 `;
 
                 return cardElm
+
             });
 
             sectionElm.append(...cards)
@@ -80,7 +104,7 @@ function fetchPokemon(offSet) {
             }
 
             let observedImgs = sectionElm.querySelectorAll(".poke__image img")
-            
+
             console.log(observedImgs);
 
             if (observedImgs) {
@@ -89,9 +113,6 @@ function fetchPokemon(offSet) {
                 })
             }
 
-
-            
-            
         });
 
     document.querySelector("main").append(sectionElm)

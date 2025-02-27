@@ -40,6 +40,7 @@
     padding: 0 1rem;
     position: absolute;
     top: 1rem;
+    place-self: center;
 }
 
 .poke__image img {
