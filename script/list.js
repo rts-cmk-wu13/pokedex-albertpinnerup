@@ -43,19 +43,7 @@ let searchContainer = document.createElement("div")
 
 
 
-searchContainer.innerHTML = `
-                <input type="search" id="search" placeholder="Search">
-                <div id="search__results"></div>
-            `
 
-const searchInput = searchContainer.querySelector("#search");
-
-searchInput.addEventListener('input', e => {
-    let value = e.target.value;
-
-    console.log(value);
-
-})
 
 document.querySelector("header").append(searchContainer)
 

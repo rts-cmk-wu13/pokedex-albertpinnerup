@@ -6,9 +6,6 @@ divElm.innerHTML = `
         <nav>
             
         </nav>
-        <form action="details.html">
-            <input type="search" name="pokemonid" id="id" placeholder="search">
-        </form>
     </header>
 
     <main>

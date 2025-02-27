@@ -4,6 +4,10 @@ sectionElm.classList.add("poke__details")
 let currentPoke = readFromLocalStorage("pokemon")
 document.querySelector("#root").classList.add("details")
 
+let search = window.location.search;
+let params = new URLSearchParams(search);
+let id = params.get("id");
+
 function arrows() {
 
     if (currentPoke == 1) {
