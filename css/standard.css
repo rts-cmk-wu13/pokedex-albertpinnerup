@@ -1,0 +1,201 @@
+@import url(cards.css);
+@import url(details.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+
+	/* ? font variables start*/
+	--fs-24: 1.5rem;
+	--fs-14: 0.875rem;
+	--fs-12: 0.75rem;
+	--fs-10: 0.625rem;
+	--fs-08: 0.5rem;
+
+	--fw-bold: bold;
+	--fw-regular: 400;
+	/* ! Font variables end */
+
+
+
+	/* ? Color variables start */
+	--primary-identity: #DC0A2D;
+
+	--dark-grayscale: #212121;
+	--medium-grayscale: #666666;
+	--light-grayscale: #E0E0E0;
+	--background-grayscale: #EFEFEF;
+	--white-grayscale: #FFFFFF;
+	/* ! Color variables end */
+
+
+	/* ? Type color variables */
+	--type-bug: #A7B723;
+	--type-dark: #75574C;
+	--type-dragon: #7037FF;
+	--type-electric: #F9CF30;
+	--type-fairy: #E69EAC;
+	--type-fighting: #C12239;
+	--type-fire: #F57D31;
+	--type-flying: #A891EC;
+	--type-ghost: #70559B;
+	--type-normal: #AAA67F;
+	--type-grass: #74CB48;
+	--type-ground: #DEC16B;
+	--type-ice: #9AD6DF;
+	--type-poison: #A43E9E;
+	--type-psychic: #FB5584;
+	--type-rock: #B69E31;
+	--type-steel: #B7B9D0;
+	--type-water: #6493EB;
+
+
+	/* ? header variables start*/
+	--headline-header: var(--fs-24);
+	--subtitle1-header: var(--fs-14);
+	--subtitle2-header: var(--fs-12);
+	--subtitle3-header: var(--fs-10);
+	/* ! header variables end */
+
+
+
+	/* ? body variables start */
+	--body1: var(--fs-14);
+	--body2: var(--fs-12);
+	--body3: var(--fs-10);
+	--caption-body: var(--fs-08);
+	/* ! body varibles end */
+
+
+
+	/* ? shadow variable start*/
+	--dropshadow2: 0px 1px 3px 1px rgba(0, 0, 0, .20);
+	--dropshadow6: 0px 3px 12px 3px rgba(0, 0, 0, .20);
+	--innershadow2: 0px 1px 3px 1px rgba(0, 0, 0, .25) inset;
+	/* ! shadow variable end */
+}
+
+#root {
+	min-width: 360px;
+	margin: 0 auto;
+	padding: 0.25rem;
+	background-color: var(--primary-identity);
+	height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
+
+html {
+	font-family: "inter", Arial, Helvetica, sans-serif;
+	scroll-behavior: smooth;
+}
+
+body {
+	height: 100vh;
+}
+
+header {
+	grid-row: 1;
+	height: 108px;
+}
+
+main {
+	grid-row: 2;
+	overflow-y: scroll;
+	border-radius: 8px;
+}
+
+p {
+	padding-bottom: 1em;
+}
+
+/* RWD: */
+img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.bug{
+	background-color: var(--type-bug)
+}
+
+.dark {
+background-color: var(--type-dark);
+}
+
+.dragon {
+	background-color: var(--type-dragon);
+}
+
+.electric {
+	background-color: var(--type-electric);
+}
+
+.fairy {
+	background-color: var(--type-fairy);
+}
+
+.fighting {
+	background-color: var(--type-fighting);
+}
+
+.fire {
+	background-color: var(--type-fire);
+}
+
+.flying {
+	background-color: var(--type-flying);
+}
+
+.ghost {
+	background-color: var(--type-ghost);
+}
+
+.normal {
+	background-color: var(--type-normal);
+}
+	
+.grass {
+	background-color: var(--type-grass);
+}
+
+.ground {
+	background-color: var(--type-ground);
+}
+
+.ice {
+	background-color: var(--type-ice);
+}
+
+.poison {
+	background-color: var(--type-poison);
+}
+
+.psychic {
+	background-color: var(--type-psychic);
+}
+
+.rock {
+	background-color: var(--type-rock);
+}
+
+.steel {
+	background-color: var(--type-steel);
+}
+
+.water {
+	background-color: var(--type-water);
+}
+
+	
+	
