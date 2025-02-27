@@ -45,6 +45,17 @@ function fetchPokemon(offSet) {
         .then(response => response.json())
         .then(data => {
 
+            let header = document.querySelector("header")
+
+           
+
+            header.innerHTML = `
+                <input type="search" id="search" placeholder="Search">
+                <div id="search__results"></div>
+            `
+
+            
+
             let cards = data.results.map(pokemon => {
 
                 let pokeId = pokemon.url.slice(0, -1).split("/").pop()
